@@ -15,15 +15,14 @@ public class SetPlayerTwoHandler: IRequestHandler<SetPlayerTwo.Command, SetPlaye
     {
         _context = context;
     }
-
-
+    
     public async Task<SetPlayerTwo.Response> Handle(SetPlayerTwo.Command request, CancellationToken cancellationToken)
     {
         var game = await _context.Games.GetEntityAsync(request.GameId, cancellationToken);
         var player = await _context.Players.GetEntityAsync(request.PlayerId, cancellationToken);
         
-        player.MovementValue = (char)MovementValues.X;
-        game.SetPlayerOne(player);
+        player.MovementValue = (char)MovementValues.O;
+        game.SetPlayerTwo(player);
         
         await _context.SaveChangesAsync(cancellationToken);
         

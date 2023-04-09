@@ -1,3 +1,3 @@
 namespace Presentation.WebApi.Models.Games;
 
-public record SetPlayerModel(Guid GameId, Guid PlayerId);
+public record SetPlayerModel(int GameId, int PlayerId);

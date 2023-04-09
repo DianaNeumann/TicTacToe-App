@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.WebApi.Models.Games;
-using static Application.Contracts.Game.CreateGame;
 using static Application.Contracts.Game.GetGameById;
-using static Application.Contracts.Game.SetPlayerOne;
 
 namespace Presentation.WebApi.Controllers;
 
@@ -27,7 +25,6 @@ public class GameController : ControllerBase
 
     
     [HttpPost("CreateGame")]
-    [Authorize]
     public async Task<ActionResult<GameDto>> CreateGameAsync()
     {
         var command = new CreateGame.Command();
@@ -72,7 +69,7 @@ public class GameController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<GameDto>> GetGameByIdAsync(Guid id)
+    public async Task<ActionResult<GameDto>> GetGameByIdAsync(int id)
     {
         var query = new Query(id);
         var response = await _mediator.Send(query, CancellationToken);

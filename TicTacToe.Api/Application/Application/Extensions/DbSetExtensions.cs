@@ -8,7 +8,7 @@ namespace Application.Extensions;
 
 public static class DbSetExtensions
 {
-    public static async Task<T> GetEntityAsync<T>(this DbSet<T> set, Guid id, CancellationToken cancellationToken)
+    public static async Task<T> GetEntityAsync<T>(this DbSet<T> set, int id, CancellationToken cancellationToken)
         where T : class
     {
         var entity = await set.FindAsync(new object[] { id }, cancellationToken);

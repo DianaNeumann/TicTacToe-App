@@ -22,7 +22,7 @@ public class AuthService : IAuthService
     public async Task<Domain.Players.Player> RegisterAsync(string name, string password, CancellationToken cancellationToken)
     {
         var passwordHash = _passwordManager.CreatePasswordHash(password);
-        var player = new Domain.Players.Player(Guid.NewGuid(), name, passwordHash);
+        var player = new Domain.Players.Player(name, passwordHash);
 
         _context.Players.Add(player);
         await _context.SaveChangesAsync(cancellationToken);

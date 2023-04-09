@@ -22,7 +22,7 @@ builder.Services.AddDataAccess(x => x.UseLazyLoadingProxies().UseSqlite("Data So
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddFluentValidationAutoValidation();
+// builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(options =>

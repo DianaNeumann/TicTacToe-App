@@ -18,13 +18,7 @@ public class CreateGameHandler : IRequestHandler<Command, Response>
 
     public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
     {
-        // var playerOne = await _context.Players.GetEntityAsync(request.PlayerOneId, cancellationToken);
-        // var playerTwo = await _context.Players.GetEntityAsync(request.PlayerTwoId, cancellationToken);
-        //
-        // playerOne.MovementValue = (char)MovementValues.X;
-        // playerTwo.MovementValue = (char)MovementValues.O;
-
-        var game = new Domain.Games.Game(Guid.NewGuid());
+        var game = new Domain.Games.Game();
 
         _context.Games.Add(game);
         await _context.SaveChangesAsync(cancellationToken);

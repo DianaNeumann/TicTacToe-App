@@ -6,17 +6,19 @@ public class Player
     {
     }
     
-    public Player(Guid id, string name, string passwordHash)
+    public Player(string name, string passwordHash)
     {
-        Id = id;
         Name = name;
         PasswordHash = passwordHash;
+        EarnedPoints = 0;
     }
 
-    public  Guid Id { get; protected set; }
+    public int Id { get; protected set; }
     public string Name { get; set; }
     public string PasswordHash { get; set; }
     public char MovementValue { get; set; }
+    
+    public double EarnedPoints { get; set; }
     
     public bool IsPlaying { get; set; }
 }

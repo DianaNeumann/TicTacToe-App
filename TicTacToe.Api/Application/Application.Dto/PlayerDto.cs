@@ -2,4 +2,4 @@ using System;
 
 namespace Application.Dto;
 
-public record PlayerDto(Guid Id, string Name, bool IsPlaying);
+public record PlayerDto(int Id, string Name, double EarnedPoints, bool IsPlaying);

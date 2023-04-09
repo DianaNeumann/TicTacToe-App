@@ -41,7 +41,7 @@ public class PlayerController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<PlayerDto>> GetPlayerByIdAsync(Guid id)
+    public async Task<ActionResult<PlayerDto>> GetPlayerByIdAsync(int id)
     {
         var query = new Query(id);
         var response = await _mediator.Send(query, CancellationToken);

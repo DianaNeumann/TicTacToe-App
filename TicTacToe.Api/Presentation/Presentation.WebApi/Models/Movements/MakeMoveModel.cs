@@ -1,5 +1,3 @@
-using System;
+namespace Presentation.WebApi.Models.Movements;
 
-namespace Presentation.Models.Movements;
-
-public record MakeMoveModel(Guid GameId, Guid PlayerId, int Position);
+public record MakeMoveModel(int GameId, int PlayerId, int Position);

@@ -1,7 +1,7 @@
 using Application.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Models.Movements;
+using Presentation.WebApi.Models.Movements;
 using static Application.Contracts.Movements.MakeMove;
 
 namespace Presentation.WebApi.Controllers;

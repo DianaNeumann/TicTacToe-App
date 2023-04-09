@@ -9,7 +9,7 @@ public class Board
 {
     private const char DefaultSymbol = '-';
     
-    public Guid Id { get; init; }
+    public int Id { get; init; }
     public string Field { get; private set; }
     public Board()
     {
