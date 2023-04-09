@@ -1,4 +1,4 @@
-# TicTacToe Api
+# Simple TicTacToe Demo Api
 
 - AspNetCore
 - Jwt Tokens
