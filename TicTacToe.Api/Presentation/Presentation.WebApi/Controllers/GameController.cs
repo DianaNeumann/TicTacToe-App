@@ -63,6 +63,7 @@ public class GameController : ControllerBase
         {
             return StatusCode(StatusCodes.Status400BadRequest, validationResult.Errors.Select(x => x.ErrorMessage));
         }
+        
         var response = await _mediator.Send(command, CancellationToken);
 
         return Ok(response.Game);
