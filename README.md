@@ -4,3 +4,4 @@
 - Jwt Tokens
 - MediatR
 - EF
+- Swagger
