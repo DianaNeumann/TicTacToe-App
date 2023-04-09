@@ -25,6 +25,7 @@ public class GameController : ControllerBase
 
     
     [HttpPost("CreateGame")]
+    [Authorize]
     public async Task<ActionResult<GameDto>> CreateGameAsync()
     {
         var command = new CreateGame.Command();
