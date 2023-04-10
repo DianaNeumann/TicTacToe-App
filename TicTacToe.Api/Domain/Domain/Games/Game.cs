@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Domain.Boards;
 using Domain.Games.GameStates;
-using Domain.Games.Tools;
 using Domain.Movements;
 using Domain.Players;
 
@@ -9,6 +8,9 @@ namespace Domain.Games;
 
 public class Game
 {
+    private const double WinValue = 2;
+    private const double DrawValue = 1; 
+    
     public Game()
     {
         PlayerOne = null;
@@ -38,13 +40,13 @@ public class Game
             var timeDifference = movement.Time - Movements.Last().Time;
             if (timeDifference > TimeSpan.FromSeconds(15))
             {
-                EndGameResolver.TimeIsOver(this);
+                TimeIsOver();
             }
         }
 
         if (currentStatus != GameStatus.InProcess)
         {
-            EndGameResolver.ComputeWin(this, currentStatus);
+            ComputeWin(currentStatus);
         }
         
         AddMoveToHistory(movement);
@@ -73,5 +75,38 @@ public class Game
     {
         ArgumentNullException.ThrowIfNull(movement);
         Movements.Add(movement);
+    }
+    
+    private void ComputeWin(GameStatus currentStatus)
+    {
+        switch (currentStatus)
+        {
+            case GameStatus.Draw:
+                PlayerOne.EarnedPoints += DrawValue;
+                PlayerTwo.EarnedPoints += DrawValue;
+                var currentStat = new GameStats(this, Board, null);
+                Statistics.Add(currentStat);
+                break;
+            case GameStatus.PlayerOneWon:
+                PlayerOne.EarnedPoints += WinValue;
+                currentStat = new GameStats(this, Board, PlayerOne);
+                Statistics.Add(currentStat);
+                break;
+            case GameStatus.PlayerTwoWon:
+                PlayerTwo.EarnedPoints += WinValue;
+                currentStat = new GameStats(this, Board, PlayerTwo);
+                Statistics.Add(currentStat);
+                break;
+        }
+        Board = new Board();
+    }
+    
+    private void TimeIsOver()
+    {
+        var winner = Movements.Last().Player;
+        winner.EarnedPoints += WinValue;
+        var currentStat = new GameStats(this, Board, winner);
+        Statistics.Add(currentStat);
+        Board = new Board();
     }
 }
